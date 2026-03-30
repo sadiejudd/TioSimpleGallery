@@ -7,9 +7,16 @@ from .models import Image
 
 class UploadView(CreateView):
     model = Image
-    fields = "__all__"
+    fields = ["image"]
     template_name = "gallery/upload.html"
     success_url = "/home"
+
+    def from_valid(self, form):
+        if not self.request.session.session_key:
+            self.request.session.create()
+
+        form.instance.session_id = self.request.session.session_key
+        return super().form_valid(form)
 
 
 class HomeView(ListView):
