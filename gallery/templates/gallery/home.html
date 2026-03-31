@@ -10,10 +10,31 @@
 
     <h2>Images</h2>
     {%for image in images%}
-    <img src = "{{image.image.url}}" width = "300px">
+    
+    <a href = "{{image.image.url}}" target = "blank"><img src = "{{image.image.url}}" width = "300px"></a>
     {% endfor %}
 
 <br>
+
+<h5>Filter Images</h5>
+<form>
+    {% for tag in tags %}
+   <label>
+    <input type = "checkbox" name = "tags" value = "{{tag.id}}">
+    {{tag.tag}}
+    </label>
+
+    {% endfor %}
+
+    <button type = "submit">Filter</button>
+
+    <br>
+    <br>
+    <h5>Recently Viewed</h5>
+    
+
+
+</form>
 <a href = "{% url 'upload' %}" class = "btn btn-primary">Add more images</a>
     
 </body>
