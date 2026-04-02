@@ -11,7 +11,7 @@
     <h2>Images</h2>
     {%for image in images%}
     
-    <a href = "{{image.image.url}}" target = "blank"><img src = "{{image.image.url}}" width = "300px"></a>
+    <a href = "{% url 'image_detail' image.id %}" target = "blank"><img src = "{{image.image.url}}" width = "300px"></a>
     {% endfor %}
 
 <br>
@@ -31,6 +31,11 @@
     <br>
     <br>
     <h5>Recently Viewed</h5>
+
+    {% for image in recents %}
+    <a href = "{% url 'image_detail' image.id %}" target = "blank"><img src = "{{image.image.url}}"></a>
+    {% endfor %}
+
     
 
 
