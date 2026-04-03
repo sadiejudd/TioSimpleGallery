@@ -14,7 +14,9 @@
 
     <h3>Comments: </h3>
     {% for comment in comments %}
+    <div style = "border: 5px;">
     <p>{{comment.comment}}</p>
+    </div>
     {% endfor %}
 
     <form method = "POST">
