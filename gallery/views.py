@@ -113,7 +113,9 @@ class ImageDetailView(DetailView):
         return super().get(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs):
-        comments_ = Comment.objects.all()
+        self.object = self.get_object()
+        image_id = self.object.id
+        comments_ = self.object.comments.all()
         context = super().get_context_data(**kwargs)
         context["comments"] = comments_
         context["form"] = CommentForm()
@@ -121,12 +123,17 @@ class ImageDetailView(DetailView):
         return context
     
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object
+        self.object = self.get_object()
+
 
         form = CommentForm(request.POST)
+        
 
         if form.is_valid():
-           form.save()
+           comment = form.save(commit=False)
+           comment.image = self.object
+           comment.save()
+
 
 
 

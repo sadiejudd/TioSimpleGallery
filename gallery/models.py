@@ -19,4 +19,4 @@ class Image(models.Model):
 
 class Comment(models.Model):
     comment = models.CharField(max_length = 200)
-    image = models.ForeignKey(Image)
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name="comments")
